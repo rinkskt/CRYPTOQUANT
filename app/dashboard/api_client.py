@@ -22,8 +22,8 @@ API_BASE_URL = "http://localhost:8000/api/v1"
 if os.getenv('API_BASE_URL'):
     API_BASE_URL = os.getenv('API_BASE_URL')
 elif os.getenv('STREAMLIT_SERVER_HEADLESS', '').lower() == 'true':
-    # Running on Streamlit Cloud - use a placeholder that will be configured
-    API_BASE_URL = "https://cryptoquant-api.onrender.com/api/v1"  # You can change this to your API URL
+    # Running on Streamlit Cloud - use Render API
+    API_BASE_URL = "https://cryptoquant.onrender.com/api/v1"
 
 
 def get_assets() -> List[Dict[str, Any]]:
