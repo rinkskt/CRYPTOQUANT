@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: cryptoquant-api
+    runtime: python3
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.api.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: DATABASE_URL
+        value: ${{ DATABASE_URL }}
+      - key: REDIS_URL
+        value: ${{ REDIS_URL }}
+
+databases:
+  - name: cryptoquant-db
+    databaseName: cryptoquant
+    user: cryptoquant
+    plan: starter
+
+  - name: cryptoquant-redis
+    name: cryptoquant-redis
+    plan: starter
