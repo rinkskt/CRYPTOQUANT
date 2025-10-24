@@ -27,11 +27,32 @@ Uma plataforma completa de análise quantitativa para criptomoedas com dashboard
 ### ⚠️ Monitoramento
 - **Sistema de Alertas**: Notificações automáticas baseadas em regras
 
-## 🚀 Deploy na Nuvem
+## 🚀 Deploy na Nuvem (GRÁTIS)
 
-### Opções de Deploy
+### 🎯 Opções Gratuitas Recomendadas
 
-#### 1. **Railway** (Recomendado)
+#### 1. **Streamlit Cloud** (Mais Fácil - GRÁTIS)
+```bash
+# 1. Faça push do código para GitHub
+git add .
+git commit -m "Deploy to Streamlit Cloud"
+git push origin main
+
+# 2. Deploy no Streamlit Cloud
+# - Acesse share.streamlit.io
+# - Conecte sua conta GitHub
+# - Selecione o repositório cryptoquant-dashboard
+# - Defina o arquivo principal: app/dashboard/app.py
+# - Clique em "Deploy"
+```
+
+**Vantagens:**
+- ✅ 100% gratuito
+- ✅ Deploy em 2 minutos
+- ✅ Integração direta com GitHub
+- ✅ Sem configuração complexa
+
+#### 2. **Railway** (Plano Gratuito Disponível)
 ```bash
 # 1. Faça push do código para GitHub
 git add .
@@ -40,11 +61,14 @@ git push origin main
 
 # 2. Conecte no Railway
 # - Acesse railway.app
-# - Conecte seu repositório GitHub
+# - Faça login com GitHub
+# - Clique em "New Project"
+# - Selecione "Deploy from GitHub repo"
+# - Escolha seu repositório
 # - Railway detectará automaticamente o railway.json
 ```
 
-#### 2. **Render**
+#### 3. **Render** (Plano Gratuito Disponível)
 ```bash
 # 1. Faça push do código para GitHub
 git add .
@@ -53,12 +77,17 @@ git push origin main
 
 # 2. Conecte no Render
 # - Acesse render.com
-# - Crie um novo serviço web
+# - Faça login com GitHub
+# - Clique em "New +"
+# - Selecione "Web Service"
 # - Conecte seu repositório GitHub
-# - Render usará o render.yaml
+# - Configure:
+#   - Runtime: Python 3
+#   - Build Command: pip install -r requirements.txt
+#   - Start Command: streamlit run app/dashboard/app.py --server.port $PORT --server.address 0.0.0.0
 ```
 
-#### 3. **Docker Local**
+#### 4. **Docker Local** (Para Desenvolvimento)
 ```bash
 # Para desenvolvimento local
 docker-compose up --build
