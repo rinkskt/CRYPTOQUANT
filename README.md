@@ -1,67 +1,153 @@
-# Crypto Quant
+# 🚀 CryptoQuant Dashboard
 
-Este projeto é uma plataforma de análise quantitativa para criptomoedas, incluindo ETL, analytics, API e dashboard.
+Uma plataforma completa de análise quantitativa para criptomoedas com dashboard interativo, API FastAPI e deploy na nuvem.
 
-## Visão Geral
+![CryptoQuant](https://img.shields.io/badge/CryptoQuant-v2.0-blue)
+![Python](https://img.shields.io/badge/Python-3.11+-green)
+![Streamlit](https://img.shields.io/badge/Streamlit-1.28+-red)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.104+-orange)
 
-O projeto visa fornecer ferramentas para análise de dados de criptomoedas, incluindo:
+## 🌟 Funcionalidades
 
-- ETL para coleta e processamento de dados OHLCV
-- Módulos de analytics para cálculos de retornos, correlação, cointegration, etc.
-- API FastAPI para acesso aos dados
-- Dashboard Streamlit para visualização
-- Orquestração com Celery/Prefect
-- Monitoramento com Prometheus/Grafana
-- CI/CD com GitHub Actions
-- Deploy via Docker Compose/K8s
+### 📊 Análise de Mercado
+- **Visão Geral**: Ranking de criptos, métricas globais e indicadores técnicos
+- **Correlações**: Mapa de calor e análise de cointegração para pairs trading
+- **Detalhes do Ativo**: Análise técnica completa com Z-score e sinais
 
-## Estrutura do Projeto
+### 💼 Gestão de Portfólio
+- **Performance**: Retornos, Sharpe ratio, beta e drawdown
+- **Risco**: VaR, Expected Shortfall e análise de correlação
+- **Otimização**: Fronteira eficiente e rebalanceamento automático
+- **Rebalanceamento**: Sugestões de trades com impacto de custos
 
-- `app/`: Código principal da aplicação
-  - `api/`: API FastAPI
-  - `analytics/`: Módulos de análise
-  - `etl/`: Extração, Transformação e Carga de dados
-  - `db/`: Modelos de banco de dados e migrations
-  - `dashboard/`: Aplicação Streamlit
-  - `workers/`: Workers para tarefas assíncronas
-  - `utils/`: Utilitários
-- `tests/`: Testes
-- `docker-compose.yml`: Configuração Docker Compose
-- `Dockerfile`: Imagem Docker
-- `pyproject.toml`: Dependências e configurações Python
+### 🔧 Ferramentas Avançadas
+- **Laboratório Quant**: Backtesting e simulações personalizadas
+- **Dados em Tempo Real**: Análise de correlação rolling
 
-## Pré-requisitos
+### ⚠️ Monitoramento
+- **Sistema de Alertas**: Notificações automáticas baseadas em regras
 
-- VS Code instalado
-- Docker & Docker Compose
+## 🚀 Deploy na Nuvem
+
+### Opções de Deploy
+
+#### 1. **Railway** (Recomendado)
+```bash
+# 1. Faça push do código para GitHub
+git add .
+git commit -m "Deploy to Railway"
+git push origin main
+
+# 2. Conecte no Railway
+# - Acesse railway.app
+# - Conecte seu repositório GitHub
+# - Railway detectará automaticamente o railway.json
+```
+
+#### 2. **Render**
+```bash
+# 1. Faça push do código para GitHub
+git add .
+git commit -m "Deploy to Render"
+git push origin main
+
+# 2. Conecte no Render
+# - Acesse render.com
+# - Crie um novo serviço web
+# - Conecte seu repositório GitHub
+# - Render usará o render.yaml
+```
+
+#### 3. **Docker Local**
+```bash
+# Para desenvolvimento local
+docker-compose up --build
+```
+
+## 📋 Pré-requisitos
+
 - Python 3.11+
-- Git
+- Docker & Docker Compose (opcional)
+- Conta GitHub
+- Conta na plataforma de deploy (Railway/Render)
 
-## Instalação e Execução
+## 🛠️ Instalação Local
 
-1. Clone o repositório
-2. Instale as dependências: `pip install -r requirements.txt` ou `poetry install`
-3. Execute o Docker Compose: `docker-compose up`
-4. Acesse a API em http://localhost:8000
-5. Acesse o dashboard em http://localhost:8501
+```bash
+# 1. Clone o repositório
+git clone https://github.com/seu-usuario/cryptoquant-dashboard.git
+cd cryptoquant-dashboard
 
-## Desenvolvimento
+# 2. Crie ambiente virtual
+python -m venv venv
+venv\Scripts\activate  # Windows
+# source venv/bin/activate  # Linux/Mac
 
-Para desenvolvimento local:
+# 3. Instale dependências
+pip install -r requirements.txt
 
-1. Crie um ambiente virtual: `python -m venv venv`
-2. Ative o venv: `venv\Scripts\activate` (Windows)
-3. Instale dependências: `pip install -e .`
-4. Execute a aplicação: `uvicorn app.api.main:app --reload`
+# 4. Execute localmente
+# API
+uvicorn app.api.main:app --reload
 
-## Contribuição
+# Dashboard (em outro terminal)
+streamlit run app/dashboard/app.py
+```
+
+## 🌐 Acesso
+
+Após deploy, você terá:
+- **API**: `https://sua-api.railway.app` ou `https://sua-api.onrender.com`
+- **Dashboard**: `https://sua-dashboard.railway.app` ou `https://sua-dashboard.onrender.com`
+
+## 📁 Estrutura do Projeto
+
+```
+cryptoquant-dashboard/
+├── app/
+│   ├── api/                 # FastAPI endpoints
+│   ├── dashboard/           # Streamlit app
+│   ├── analytics/           # Quantitative analysis modules
+│   ├── db/                  # Database models & migrations
+│   └── etl/                 # Data extraction & processing
+├── docker-compose.yml       # Local development
+├── Dockerfile              # Container configuration
+├── railway.json            # Railway deployment
+├── render.yaml             # Render deployment
+└── requirements.txt        # Python dependencies
+```
+
+## 🔧 Configuração
+
+### Variáveis de Ambiente
+```env
+DATABASE_URL=postgresql://user:pass@host:5432/db
+REDIS_URL=redis://host:6379
+API_BASE_URL=https://your-api-url.com
+```
+
+### Banco de Dados
+- **Desenvolvimento**: SQLite automático
+- **Produção**: PostgreSQL + Redis (via Docker Compose)
+
+## 🤝 Contribuição
 
 1. Fork o projeto
-2. Crie uma branch para sua feature
-3. Commit suas mudanças
-4. Push para a branch
+2. Crie uma branch (`git checkout -b feature/nova-feature`)
+3. Commit suas mudanças (`git commit -m 'Adiciona nova feature'`)
+4. Push para a branch (`git push origin feature/nova-feature`)
 5. Abra um Pull Request
 
-## Licença
+## 📄 Licença
 
-Este projeto está sob a licença MIT.
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para detalhes.
+
+## 📞 Suporte
+
+- 📧 Email: seu-email@exemplo.com
+- 💬 Issues: [GitHub Issues](https://github.com/seu-usuario/cryptoquant-dashboard/issues)
+- 📖 Docs: [Documentação Completa](docs/)
+
+---
+
+**⭐ Star este repositório se achou útil!**

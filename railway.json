@@ -1,0 +1,36 @@
+{
+    "build": {
+        "builder": "NIXPACKS"
+    },
+    "deploy": {
+        "startCommand": "uvicorn app.api.main:app --host 0.0.0.0 --port $PORT"
+    },
+    "services": [
+        {
+            "name": "api",
+            "source": {
+                "repo": "https://github.com/yourusername/cryptoquant-dashboard",
+                "branch": "main"
+            },
+            "build": {
+                "builder": "NIXPACKS"
+            },
+            "deploy": {
+                "startCommand": "uvicorn app.api.main:app --host 0.0.0.0 --port $PORT"
+            }
+        },
+        {
+            "name": "dashboard",
+            "source": {
+                "repo": "https://github.com/yourusername/cryptoquant-dashboard",
+                "branch": "main"
+            },
+            "build": {
+                "builder": "NIXPACKS"
+            },
+            "deploy": {
+                "startCommand": "streamlit run app/dashboard/app.py --server.port $PORT --server.address 0.0.0.0"
+            }
+        }
+    ]
+}
